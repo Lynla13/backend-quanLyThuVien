@@ -3,7 +3,7 @@
 
 
 function getPage (req,res) {
-    return res.render ('index.ejs')
+    return res.send ('index.ejs');
 }
 //Hiện thị tất cả ảnh
 async function showAll (req,res) {

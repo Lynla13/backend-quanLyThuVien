@@ -27,12 +27,8 @@ function createDatabase (database) {
 }
 
 //Create making table function
-function createTable () {
-    pool.query (`
-    CREATE TABLE IF NOT EXISTS `+table+` (
-        `+contents+`      
-      );
-    `);
+function createTable (table, contents) {
+    pool.query (' CREATE TABLE IF NOT EXISTS '+table+' ( '+contents+');');
 }
 
 module.exports = {
