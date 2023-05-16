@@ -64,7 +64,7 @@ async function tusach() {
    let table = 'tusach';
    let contents= `
       book_id INT NOT NULL, 
-      user_id INT NOT NULL,
+      username VARCHAR (200) NOT NULL,
       isdeteled INT,
       create_at TIMESTAMP,
       updated_at TIMESTAMP,
@@ -75,9 +75,8 @@ async function tusach() {
 async function follow() {
    let table = 'follow';
    let contents= `
-      following_id INT NOT NULL, 
-      user_id INT NOT NULL,
-      isfollow INT,
+      following VARCHAR (100) NOT NULL, 
+      username VARCHAR (200) NOT NULL,
       create_at TIMESTAMP,
       updated_at TIMESTAMP,
       deteled_at TIMESTAMP `;
@@ -88,9 +87,10 @@ async function follow() {
 async function post() {
    let table = 'post';
    let contents= `
-      user_id INT NOT NULL,
-      post_id INT NOT NULL,
-      post_mota VARCHAR (100), 
+      username VARCHAR (200) NOT NULL,
+      id INT NOT NULL,
+      content VARCHAR (200), 
+      book_id INT NOT NULL,
       isPicture INT NOT NULL,
       isdeleted INT,
       create_at TIMESTAMP,
@@ -113,9 +113,10 @@ async function postpic() {
 async function camsuc() {
    let table = 'camsuc';
    let contents= `
-      camsuc_id INT NOT NULL,
-      camsuc_mota VARCHAR (100), 
-      user_id INT NOT NULL,
+      id INT NOT NULL PRIMARY KEY AUTO_INCREMENT ,
+      name VARCHAR (100) NOT NULL,
+      mota VARCHAR (200), 
+      username VARCHAR (200) NOT NULL,
       post_id INT NOT NULL,
       create_at TIMESTAMP,
       updated_at TIMESTAMP,
@@ -127,7 +128,31 @@ async function yeuthich() {
    let table = 'yeuthich';
    let contents= `
       book_id INT NOT NULL,
-      user_id INT NOT NULL,
+      username VARCHAR (200) NOT NULL,
+      create_at TIMESTAMP,
+      updated_at TIMESTAMP,
+      deteled_at TIMESTAMP `;
+   return Promise.resolve (await BaseModel.createTable (table,contents));
+     }
+
+async function share() {
+   let table = 'share';
+   let contents= `
+      book_id INT NOT NULL,
+      username VARCHAR (200) NOT NULL,
+      friend_name VARCHAR (200) NOT NUll,
+      create_at TIMESTAMP,
+      updated_at TIMESTAMP,
+      deteled_at TIMESTAMP `;
+   return Promise.resolve (await BaseModel.createTable (table,contents));
+     }
+
+async function nofi() {
+   let table = 'nofi';
+   let contents= `
+      username VARCHAR (200) NOT NULL,
+      contents VARCHAR (200) NOT NUll,
+      isdeleted INT,
       create_at TIMESTAMP,
       updated_at TIMESTAMP,
       deteled_at TIMESTAMP `;
@@ -136,5 +161,5 @@ async function yeuthich() {
 
  module.exports = {
     books, theloai,users,profile,tusach,camsuc,post,postpic,
-    yeuthich, follow,
+    yeuthich, follow, share,nofi,
    }

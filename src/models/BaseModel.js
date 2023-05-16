@@ -30,7 +30,53 @@ function createDatabase (database) {
 function createTable (table, contents) {
     pool.query (' CREATE TABLE IF NOT EXISTS '+table+' ( '+contents+');');
 }
+// CRUD 
+
+// Create
+function insert(table,content,value) {
+    pool.query ('INSERT INTO '+table+' ('+content+')  VALUES ('+value+')');
+ }
+// Read 
+async function getAll(table,orderBy='joinday desc',limit=8,offset=1) {
+    let result =[];
+    return result = await dbQuery('SELECT *from ' +table+' ORDER BY '+orderBy+' limit '+limit+' OFFSET '+offset+'');
+}
+
+async function getAllNoLimit(table) {
+    let result =[];
+    return result = await dbQuery('SELECT *from ' +table+'');
+}
+
+async function getCount(countColunm,table) {
+    let result =[];
+    return result = await dbQuery('SELECT COUNT('+countColunm+') as COUNT FROM ' +table+'');
+}
+
+async function getByCondition(table,condition) {
+    let result =[];
+    return result = await dbQuery('SELECT DISTINCT * FROM '+ table +' WHERE '+ condition +'');
+}
+
+function getIn (table,colum,value) {
+    pool.query (`SELECT * FROM `+table+`  WHERE `+colum+` NOT IN (`+value+`)`)
+}
+
+//Update
+function update (table,value,condition) {
+    pool.query (`UPDATE `+table+`
+    SET `+value+` 
+    WHERE `+condition+`;`)
+}
+
+
+//Delete
+function deleteValue (table, condi) {
+    pool.query ('DELETE FROM '+table+' WHERE '+condi+'')
+ }
+
+
 
 module.exports = {
-    createDatabase, createTable, 
+    createDatabase, createTable, insert, getAll, getAllNoLimit, 
+    getCount, getByCondition, update, deleteValue, getIn
 }

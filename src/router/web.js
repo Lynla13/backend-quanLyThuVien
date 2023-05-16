@@ -10,7 +10,7 @@ const initWebRouter = (app) => {
     router.get('/', HomeController.getPage);
 
     //Admin 
-    router.post('/createTable',TableControllers.createTable);
+    router.get('/createTable',TableControllers.createTable);
     return app.use('/', router);
 }
 export default initWebRouter

@@ -13,6 +13,8 @@ function createTable (req,res) {
     TableModel.postpic();
     TableModel.yeuthich();
     TableModel.follow();
+    TableModel.nofi();
+    TableModel.share();
     return res.send ("thanh cong");
 }
 
