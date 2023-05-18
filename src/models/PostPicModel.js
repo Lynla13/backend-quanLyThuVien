@@ -7,26 +7,26 @@ async function showAll() {
     return Promise.resolve ( await BaseModel.getAllNoLimit(table));
 }
 
-async function showByCondi (value =[]) {
-    let condition = 'post_id = "' +value [0]+ '"';
+async function showByCondi (post_id) {
+    let condition = 'post_id = "' +post_id+ '"';
     return Promise.resolve ( await BaseModel.getByCondition(table, condition));
 }
 
-async function insert (value = []) {
+async function insert (post_id,post_pic) {
     let content = 'post_id, post_pic';
-    let value = "'"+value[0]+"','"+value[1]+"'";
-    return Promise.resolve ( await BaseModel.insert(table, content,value));
+    let val = "'"+post_id+"','"+post_pic+"'";
+    return Promise.resolve ( await BaseModel.insert(table, content,val));
 }
 
-async function update (value = []){
-    let value = 'post_pic = "'+value[1]+'"';
-    let condition = 'id = "'+value[0]+'"';
-    return Promise.resolve ( await BaseModel.update(table,value, condition));
+async function update (id,post_pic){
+    let val = 'post_pic = "'+post_pic+'"';
+    let condition = 'id = "'+id+'"';
+    return Promise.resolve ( await BaseModel.update(table,val, condition));
 
 }
 
-async function permanentRemove (value = []) {
-    let condition = 'post_id = "'+value[0]+'"';
+async function permanentRemove (post_id) {
+    let condition = 'post_id = "'+post_id+'"';
     return Promise.resolve ( await BaseModel.deteleValue(table, condition));
 }
 

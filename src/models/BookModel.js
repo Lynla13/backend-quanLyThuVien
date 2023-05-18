@@ -7,34 +7,44 @@ async function showAll() {
     return Promise.resolve ( await BaseModel.getAllNoLimit(table));
 }
 
-async function showByCondi (value =[]) {
-    let condition = 'id = "' +value [0]+ '" OR name = "'+value [1]+'" OR theloai_id = "'+value[2]+'"';
+async function showByCondi_0 (id,name,theloai) {
+    let condition = 'id = "' +id+ '" OR name = "'+name+'" OR theloai_id = "'+theloai+'"';
+    return Promise.resolve ( await BaseModel.getByCondition(table, condition));
+}
+//Tag 
+async function showByCondi_1 (theloai) {
+    let condition = 'theLoai_id = "' +theloai+ '"';
     return Promise.resolve ( await BaseModel.getByCondition(table, condition));
 }
 
-async function insert (value = []) {
+async function showByCondi_2 (name,preview) {
+    let condition = 'name LIKE  "'%+name%' OR preview LIKE  "'%+preview%'"';
+    return Promise.resolve ( await BaseModel.getByCondition(table, condition));
+}
+
+async function insert (name, price, preview,theloai) {
     let content = 'name, price, preview, theloai_id';
-    let value = "'"+value[0]+"','"+value[1]+"','"+value[2]+"','"+value[3]+"'";
-    return Promise.resolve ( await BaseModel.insert(table, content,value));
+    let val = "'"+name+"','"+price+"','"+preview+"','"+theloai+"'";
+    return Promise.resolve ( await BaseModel.insert(table, content,val));
 }
 
-async function update (value = []){
-    let value = 'name = "'+value[1]+'", price ="'+value[2]+'",preview = "'+value[3]+'", theloai_id = "'+value[4]+'"';
-    let condition = 'id = "'+value[0]+'"';
-    return Promise.resolve ( await BaseModel.update(table,value, condition));
+async function update (id,name, price, preview, theloai){
+    let val = 'name = "'+name+'", price ="'+price+'",preview = "'+preview+'", theloai_id = "'+theloai+'"';
+    let condition = 'id = "'+id+'"';
+    return Promise.resolve ( await BaseModel.update(table,val, condition));
 
 }
 
-async function remove (value= [] ) {
-    let value = 'isdeleted = "'+value[1]+'"';
-    let condition = 'id = "'+value[0]+'"';
-    return Promise.resolve ( await BaseModel.update(table,value, condition));
+async function remove (id, isdeleted ) {
+    let val = 'isdeleted = "'+isdeleted+'"';
+    let condition = 'id = "'+id+'"';
+    return Promise.resolve ( await BaseModel.update(table,val, condition));
 }
 
-async function permanentRemove (value = []) {
-    let condition = 'id = "'+value[0]+'"';
+async function permanentRemove (id) {
+    let condition = 'id = "'+id+'"';
     return Promise.resolve ( await BaseModel.deteleValue(table, condition));
 }
 module.exports = {
-    showAll, showByCondi, insert, update, remove, permanentRemove
+    showAll, showByCondi_0,showByCondi_1, insert, update, remove, permanentRemove, showByCondi_2
 }

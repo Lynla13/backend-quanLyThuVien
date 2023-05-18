@@ -7,29 +7,29 @@ async function showAll() {
     return Promise.resolve ( await BaseModel.getAllNoLimit(table));
 }
 
-async function showByCondi_0 (value =[]) {
-    let condition = 'following = "' +value [0]+ '" AND username = "'+value [1]+'"';
+async function showByCondi_0 (following,username) {
+    let condition = 'following = "' +following+ '" AND username = "'+username+'"';
     return Promise.resolve ( await BaseModel.getByCondition(table, condition));
 }
 
-async function showByCondi_1 (value =[]) {
-    let condition = 'following = "' +value [0]+ '"';
+async function showByCondi_1 (following) {
+    let condition = 'following = "' +following+ '"';
     return Promise.resolve ( await BaseModel.getByCondition(table, condition));
 }
 
-async function showByCondi_2 (value =[]) {
-    let condition = 'username = "' +value [0]+ '"';
+async function showByCondi_2 (username) {
+    let condition = 'username = "' +username+ '"';
     return Promise.resolve ( await BaseModel.getByCondition(table, condition));
 }
 
-async function insert (value = []) {
+async function insert (following, username) {
     let content = 'following, username';
-    let value = "'"+value[0]+"','"+value[1]+"'";
-    return Promise.resolve ( await BaseModel.insert(table, content,value));
+    let val = "'"+following+"','"+username+"'";
+    return Promise.resolve ( await BaseModel.insert(table, content,val));
 }
 
-async function permanentRemove (value = []) {
-    let condition = 'id = "'+value[0]+'"';
+async function permanentRemove (id) {
+    let condition = 'id = "'+id+'"';
     return Promise.resolve ( await BaseModel.deteleValue(table, condition));
 }
 module.exports = {

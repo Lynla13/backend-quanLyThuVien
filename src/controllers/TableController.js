@@ -1,20 +1,21 @@
 import pool from "../configs/connect_db";
-import TableModel from "../models/TableModel";
+import Model from "../models/index";
 
 // create all table
 function createTable (req,res) {
-    TableModel.books();
-    TableModel.theloai();
-    TableModel.users();
-    TableModel.profile();
-    TableModel.tusach();
-    TableModel.camsuc();
-    TableModel.post();
-    TableModel.postpic();
-    TableModel.yeuthich();
-    TableModel.follow();
-    TableModel.nofi();
-    TableModel.share();
+    Model.TableModel.books();
+    Model.TableModel.theloai();
+    Model.TableModel.users();
+    Model.TableModel.profile();
+    Model.TableModel.tusach();
+    Model.TableModel.camsuc();
+    Model.TableModel.post();
+    Model.TableModel.postpic();
+    Model.TableModel.yeuthich();
+    Model.TableModel.follow();
+    Model.TableModel.nofi();
+    Model.TableModel.share();
+    Model.TableModel.staff();
     return res.send ("thanh cong");
 }
 

@@ -11,9 +11,7 @@ async function books() {
     preview  VARCHAR (255),
     isdeleted INT,   
     theloai_id VARCHAR (100),
-    create_at TIMESTAMP,
-    updated_at TIMESTAMP,
-    deteled_at TIMESTAMP`;
+    create_at TIMESTAMP`;
  return Promise.resolve (await BaseModel.createTable (table,contents));
  }
 
@@ -24,9 +22,7 @@ async function books() {
        name VARCHAR(100) NOT NULL, 
        mota VARCHAR(255), 
        isdeleted INT,      
-       create_at TIMESTAMP,
-       updated_at TIMESTAMP,
-       deteled_at TIMESTAMP `;
+       create_at TIMESTAMP`;
     return Promise.resolve (await BaseModel.createTable (table,contents));
     }
 
@@ -36,9 +32,8 @@ async function users() {
       username VARCHAR(100) NOT NULL PRIMARY KEY, 
       password VARCHAR(255),
       level INT,
-      create_at TIMESTAMP,
-      updated_at TIMESTAMP,
-      deteled_at TIMESTAMP `;
+      isdeleted INT,
+      create_at TIMESTAMP `;
    return Promise.resolve (await BaseModel.createTable (table,contents));
    }
 
@@ -48,15 +43,10 @@ async function profile() {
       fullname VARCHAR(100) NOT NULL, 
       avatar_pic VARCHAR(255),
       background_pic VARCHAR (255),
-      tenkhoa VARCHAR(255),
-      tenlop VARCHAR(255),
-      tennganh VARCHAR(255),
       masinhvien VARCHAR (100),
       isdeleted INT,
       username VARCHAR(100) NOT NULL,
-      create_at TIMESTAMP,
-      updated_at TIMESTAMP,
-      deteled_at TIMESTAMP `;
+      create_at TIMESTAMP `;
    return Promise.resolve (await BaseModel.createTable (table,contents));
      }
 
@@ -66,9 +56,18 @@ async function tusach() {
       book_id INT NOT NULL, 
       username VARCHAR (200) NOT NULL,
       isdeteled INT,
-      create_at TIMESTAMP,
-      updated_at TIMESTAMP,
-      deteled_at TIMESTAMP `;
+      create_at TIMESTAMP` ;
+   return Promise.resolve (await BaseModel.createTable (table,contents));
+     }
+
+async function staff() {
+   let table = 'staff';
+   let contents= `
+      username VARCHAR (200) NOT NULL,
+      fullname VARCHAR (200) NOT NULL,
+      sdt INT,
+      isdelete INT,
+      create_at TIMESTAMP`;
    return Promise.resolve (await BaseModel.createTable (table,contents));
      }
 
@@ -77,9 +76,7 @@ async function follow() {
    let contents= `
       following VARCHAR (100) NOT NULL, 
       username VARCHAR (200) NOT NULL,
-      create_at TIMESTAMP,
-      updated_at TIMESTAMP,
-      deteled_at TIMESTAMP `;
+      create_at TIMESTAMP `;
    return Promise.resolve (await BaseModel.createTable (table,contents));
      }
 // Quản lý post nếu đăng ảnh thì cho isPicture = 1 và hiển thị giao 
@@ -93,9 +90,7 @@ async function post() {
       book_id INT NOT NULL,
       isPicture INT NOT NULL,
       isdeleted INT,
-      create_at TIMESTAMP,
-      updated_at TIMESTAMP,
-      deteled_at TIMESTAMP `;
+      create_at TIMESTAMP `;
    return Promise.resolve (await BaseModel.createTable (table,contents));
      }
 
@@ -118,9 +113,7 @@ async function camsuc() {
       mota VARCHAR (200), 
       username VARCHAR (200) NOT NULL,
       post_id INT NOT NULL,
-      create_at TIMESTAMP,
-      updated_at TIMESTAMP,
-      deteled_at TIMESTAMP `;
+      create_at TIMESTAMP `;
    return Promise.resolve (await BaseModel.createTable (table,contents));
      }
 
@@ -129,9 +122,7 @@ async function yeuthich() {
    let contents= `
       book_id INT NOT NULL,
       username VARCHAR (200) NOT NULL,
-      create_at TIMESTAMP,
-      updated_at TIMESTAMP,
-      deteled_at TIMESTAMP `;
+      create_at TIMESTAMP `;
    return Promise.resolve (await BaseModel.createTable (table,contents));
      }
 
@@ -141,9 +132,7 @@ async function share() {
       book_id INT NOT NULL,
       username VARCHAR (200) NOT NULL,
       friend_name VARCHAR (200) NOT NUll,
-      create_at TIMESTAMP,
-      updated_at TIMESTAMP,
-      deteled_at TIMESTAMP `;
+      create_at TIMESTAMP`;
    return Promise.resolve (await BaseModel.createTable (table,contents));
      }
 
@@ -153,13 +142,11 @@ async function nofi() {
       username VARCHAR (200) NOT NULL,
       contents VARCHAR (200) NOT NUll,
       isdeleted INT,
-      create_at TIMESTAMP,
-      updated_at TIMESTAMP,
-      deteled_at TIMESTAMP `;
+      create_at TIMESTAMP`;
    return Promise.resolve (await BaseModel.createTable (table,contents));
      }
 
  module.exports = {
     books, theloai,users,profile,tusach,camsuc,post,postpic,
-    yeuthich, follow, share,nofi,
+    yeuthich, follow, share,nofi,staff
    }

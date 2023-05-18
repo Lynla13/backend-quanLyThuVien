@@ -7,20 +7,20 @@ async function showAll() {
     return Promise.resolve ( await BaseModel.getAllNoLimit(table));
 }
 
-async function showByCondi (value =[]) {
-    let condition = 'username = "' +value [0]+'" AND book_id = "' +value [1]+'" AND friend_name = "' +value [2]+'"';
+async function showByCondi (username,book_id) {
+    let condition = 'username = "' +username+'" AND book_id = "' +book_id+'"';
     return Promise.resolve ( await BaseModel.getByCondition(table, condition));
 }
 
-async function insert (value = []) {
+async function insert (book_id,username) {
     let content = 'book_id, username';
-    let value = "'"+value[0]+"','"+value[1]+"'";
-    return Promise.resolve ( await BaseModel.insert(table, content,value));
+    let val = "'"+book_id+"','"+vusername+"'";
+    return Promise.resolve ( await BaseModel.insert(table, content,val));
 }
 
 
-async function permanentRemove (value = []) {
-    let condition = 'username = "'+value[0]+'" AND book_id = "'+value[1]+'"';
+async function permanentRemove (username, book_id) {
+    let condition = 'username = "'+username+'" AND book_id = "'+book_id+'"';
     return Promise.resolve ( await BaseModel.deteleValue(table, condition));
 }
 

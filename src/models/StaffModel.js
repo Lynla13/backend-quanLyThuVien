@@ -1,11 +1,10 @@
 import { Callbacks } from "jquery";
 import BaseModel from "./BaseModel";
 
-let table = 'users';
+let table = 'staff';
 
 async function showAll() {
-    let condition = 'isdeleted is null';
-    return Promise.resolve ( await BaseModel.getByCondition(table, condition));
+    return Promise.resolve ( await BaseModel.getAllNoLimit(table));
 }
 
 async function showByCondi (username) {
@@ -18,14 +17,14 @@ async function showBySearch (username) {
     return Promise.resolve ( await BaseModel.getByCondition(table, condition));
 }
 
-async function insert (username,pass,level) {
-    let content = 'username, password, level';
-    let val = "'"+username+"','"+pass+"','"+level+"'";
+async function insert (username, fullname,sdt) {
+    let content = 'username, fullname, sdt';
+    let val = "'"+username+"','"+fullname+"','"+sdt+"'";
     return Promise.resolve ( await BaseModel.insert(table, content,val));
 }
 
-async function update (pass,username){
-    let val = 'password = "'+pass+'"';
+async function remove (username,isdeleted){
+    let val = 'isdeleted = "'+isdeleted+'"';
     let condition = 'username = "'+username+'"';
     return Promise.resolve ( await BaseModel.update(table,val, condition));
 
@@ -35,7 +34,6 @@ async function permanentRemove (username) {
     let condition = 'username = "'+username+'"';
     return Promise.resolve ( await BaseModel.deteleValue(table, condition));
 }
-
 module.exports = {
-    showAll, showByCondi,showBySearch, insert, update, permanentRemove
+    showAll, showByCondi, showBySearch, insert, remove, permanentRemove
 }

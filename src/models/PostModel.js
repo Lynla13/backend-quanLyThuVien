@@ -7,42 +7,42 @@ async function showAll() {
     return Promise.resolve ( await BaseModel.getAllNoLimit(table));
 }
 
-async function showByCondi_0 (value =[]) {
-    let condition = 'id = "' +value [0]+ '"';
+async function showByCondi_0 (id) {
+    let condition = 'id = "' +id+ '"';
     return Promise.resolve ( await BaseModel.getByCondition(table, condition));
 }
 
-async function showByCondi_1 (value =[]) {
-    let condition = 'username in ('+value [0]+') order by create_at '+value[1]+'';
+async function showByCondi_1 (usernames,order) {
+    let condition = 'username in ('+usernames+') order by create_at '+order+'';
     return Promise.resolve ( await BaseModel.getByCondition(table, condition));
 }
 
-async function showByCondi_2 (value =[]) {
-    let condition = 'username = "' +value [0]+ '"';
+async function showByCondi_2 (username) {
+    let condition = 'username = "' +username+ '"';
     return Promise.resolve ( await BaseModel.getByCondition(table, condition));
 }
 
-async function insert (value = []) {
-    let content = 'username, id, content, bool_id, isPicture';
-    let value = "'"+value[0]+"','"+value[1]+"','"+value[2]+"','"+value[3]+"','"+value[4]+"'";
-    return Promise.resolve ( await BaseModel.insert(table, content,value));
+async function insert (username,id,cont,book_id,isPicture) {
+    let content = 'username, id, content, book_id, isPicture';
+    let val = "'"+username+"','"+id+"','"+cont+"','"+book_id+"','"+isPicture+"'";
+    return Promise.resolve ( await BaseModel.insert(table, content,val));
 }
 
-async function update (value = []){
-    let value = 'username = "'+value[1]+'", content ="'+value[2]+'",book_id = "'+value[3]+'", isPicture = "'+value[4]+'"';
+async function update (username, cont, book_id,isPicture){
+    let val = 'username = "'+username+'", content ="'+cont+'",book_id = "'+book_id+'", isPicture = "'+isPicture+'"';
     let condition = 'id = "'+value[0]+'"';
-    return Promise.resolve ( await BaseModel.update(table,value, condition));
+    return Promise.resolve ( await BaseModel.update(table,val, condition));
 
 }
 
-async function remove (value= [] ) {
-    let value = 'isdeleted = "'+value[1]+'"';
-    let condition = 'id = "'+value[0]+'"';
-    return Promise.resolve ( await BaseModel.update(table,value, condition));
+async function remove (isdeleted,id) {
+    let val = 'isdeleted = "'+isdeleted+'"';
+    let condition = 'id = "'+id+'"';
+    return Promise.resolve ( await BaseModel.update(table,val, condition));
 }
 
-async function permanentRemove (value = []) {
-    let condition = 'id = "'+value[0]+'"';
+async function permanentRemove (id) {
+    let condition = 'id = "'+id+'"';
     return Promise.resolve ( await BaseModel.deteleValue(table, condition));
 }
 module.exports = {
