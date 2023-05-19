@@ -3,7 +3,7 @@
 
 
 function getPage (req,res) {
-    return res.send ('index.ejs');
+    return res.send('./header/index.ejs');
 }
 //Hiện thị tất cả ảnh
 async function showAll (req,res) {
@@ -22,7 +22,6 @@ async function showNotByTags (req,res) {
 
 }
 
-
 module.exports = {
-    getPage,showAll,showbyTag,showbyTags,showNotByTags
+    getPage,showAll, showbyTag, showbyTags, showNotByTags
 }

@@ -1,23 +1,11 @@
 import Model from "../../models/index";
 
 
-const limit = 30;
-
 async function showAll (req,res) {
 // Show user by Page
     //pagation function
     let user= await Model.UserModel.showAll();
-    let pageLimit = limit;
-    if (user.length<limit) 
-    {
-        pageLimit = user.length;
-    }
-    let maxPage = Math.floor (user.length/pageLimit-1);
-    let pageNum = req.params.page ||'1' ;
-    let page = pageLimit*pageNum;
-    res.json({maxpage: maxPage, page:page, User:user}); 
-    res.end();
-
+    return res.send(user); 
 }
 
 async function showBySearch (req,res) {
@@ -26,14 +14,6 @@ async function showBySearch (req,res) {
     const value = []; 
     value [0] = req.params.query;
     let user= await Model.UserModel.showBySearch(value [0]);
-    let pageLimit = limit;
-    if (user.length < limit) 
-    {
-        pageLimit = user.length;
-    }
-    let maxPage = Math.floor (user.length/pageLimit-1);
-    let pageNum = req.params.page ||'1' ;
-    let page = pageLimit*pageNum;
     res.json({maxpage: maxPage, page:page, User:user}); 
     res.end();
 }

@@ -1,29 +1,27 @@
-import express from "express";
-import configViewEngine from "./configs/view_engine";
-import initWebRouter from "./router/web";
-// import session from "express-session";
-import bodyParser from "body-parser";
-require('dotenv').config();
-
+const http = require("http");
+const express = require('express')
 const app = express()
-const port = process.env.PORT || 8081;
+const bodyParser = require('body-parser')
+const port = process.env.PORT || 3000
 
-app.use(bodyParser.json({limit: "50mb"}));
+const host = 'localhost';
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 
-app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
+//CROS handle
 
-app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+  
+let routes = require('./router/web') //importing route
+routes(app)
 
-// app.use(session({
-// 	secret: 'secret',
-// 	resave: true,
-// 	saveUninitialized: true
-// }));
-//setup viewengine
-configViewEngine(app);
-
-// init webRouter
-initWebRouter(app);
+app.use(function(req, res) {
+    res.status(404).send({url: req.originalUrl + ' not found'})
+})
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
