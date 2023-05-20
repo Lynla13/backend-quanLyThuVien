@@ -1,8 +1,8 @@
-1.**Feather**
+**1. Feather**
 
-2.**API Example**
+**2. API Example**
 
- **USER ROUTER **
+ **USER ROUTER**
 
    **url**: "/user"
  - GetAll: Get 
