@@ -1,15 +1,16 @@
-**Các chức năng cần có**
-    + Đăng kí/ Đăng nhập
-    + Tạo tủ sách
-    + Trang chủ riêng (Hiển thị thông sách mà người dùng muốn)
-    + Tự khởi tạo database
-    + Theo dõi người dùng khác,
-    + Cho phép chia sẻ sách,
+1.**Các chức năng cần có**
+    - Đăng kí/ Đăng nhập
+    - Tạo tủ sách
+    - Trang chủ riêng (Hiển thị thông sách mà người dùng muốn)
+    - Tự khởi tạo database
+    - Theo dõi người dùng khác,
+    - Cho phép chia sẻ sách,
 
-**API Example**
-* USER ROUTER   
+2.**API Example**
 
-_"/user"_
+ **USER ROUTER **
+
+   **url**: "/user"
  - GetAll: Get 
  - Insert: Post 
     {
@@ -30,15 +31,15 @@ _"/user"_
         "isdeteled" : "number" // 1- deteled, 0- restore (default)
     }
 
-_"/user/:username"_
+ **url**:"/user/:username"
 - Show User by username : Get
 
-_"/user/s=:username"_
+ **url**:"/user/s=:username"
 - Show user by search
 
-*PROFILE ROUTER
+**PROFILE ROUTER**
 
-_"/profile/:username"_
+**url**:"/profile/:username"
 -  Get profile by username: Get 
  - Insert: Post 
     {
