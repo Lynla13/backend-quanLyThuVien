@@ -28,7 +28,6 @@ async function insert (req,res) {
       catch(e) {
         return res.send(e);
       }
-   
 } 
 
 async function update (req,res) {

@@ -34,8 +34,8 @@
 **PROFILE ROUTER**
 
 **url**:"/profile/:username"
--  Get profile by username: Get 
- - Insert: Post 
+- Get profile by username: Get 
+- Insert: Post 
     {
         "fullname" :"fullname",
         "avatar_pic": "avatar_pic_url",
@@ -53,4 +53,35 @@
     {
         "isdeteled" : "number" // 1- deteled, 0- restore (default)
     }
+
+**BOOK ROUTER**
+
+**url**:"/book"
+- Show All Book: Get
+- Insert Book : Post
+    {
+        "name" : "Doremossssn",
+        "price": "111",
+        "preview":"hay",
+        "author": "lynla"
+    }
+**url**: "/book/:id" 
+- Show book by Id : Get
+- Update Book: Put
+    {
+        "name" : "Doremossssn",
+        "price": "111",
+        "preview":"hay",
+        "author": "lynla"
+    }
+- Remove/Restore : Delete
+    {
+        "isdeteled" : "number" // 1- deteled, 0- restore (default)
+    }
+
+**url**: "/book/s=:query" 
+- Show book by Query : Get
+
+**url**: "/book/tag_id=:id" 
+- Show book by Query : Get
 
