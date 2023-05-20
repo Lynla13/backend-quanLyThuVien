@@ -1,10 +1,4 @@
-1.**Các chức năng cần có**
-    - Đăng kí/ Đăng nhập
-    - Tạo tủ sách
-    - Trang chủ riêng (Hiển thị thông sách mà người dùng muốn)
-    - Tự khởi tạo database
-    - Theo dõi người dùng khác,
-    - Cho phép chia sẻ sách,
+1.**Feather**
 
 2.**API Example**
 
@@ -35,7 +29,7 @@
 - Show User by username : Get
 
  **url**:"/user/s=:username"
-- Show user by search
+- Show user by search: Get
 
 **PROFILE ROUTER**
 
