@@ -1,17 +1,15 @@
-import TableController from './TableController'
-import HomeController from './HomeController'
-import BookController from './Admin/BookController'
-import SatffController from './Admin/StaffController'
-import UserController from './Admin/UserController'
-import TagController from './Admin/TagController'
+import BookController from './BookController'
+import SatffController from './StaffController'
+import UserController from './UserController'
+import ProfileController from './ProfileController'
+import TagController from './TagController'
 
 const Controller = {
-    TableController,
-    HomeController,
     BookController,
     SatffController,
     UserController,
-    TagController
+    TagController,
+    ProfileController
 }
 
 export default Controller ;

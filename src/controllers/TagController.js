@@ -1,4 +1,4 @@
-import Model from "../../models/index";
+import Model from "../models/index";
 
 
 const limit = 30;
@@ -71,7 +71,7 @@ async function insert (req,res) {
     value [1] = req.body.price;
     value [2] = req.body.preview;
     value [3] = req.body.theloai;
-    Model.BookModel.insert (value);
+    Model.BookModel.insert (value = []);
 } 
 
 async function update (req,res) {
@@ -92,5 +92,5 @@ async function remove (req,res) {
 } 
 
 module.exports = {
-   showAll,showbyTag,showbyTags,showNotByTags, showBySearch, insert,update, remove
+    showAll,showbyTag,showbyTags,showNotByTags, showBySearch, insert,update, remove
 }
