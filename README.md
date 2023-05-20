@@ -1,4 +1,4 @@
-Các chức năng cần có
+**Các chức năng cần có**
     + Đăng kí/ Đăng nhập
     + Tạo tủ sách
     + Trang chủ riêng (Hiển thị thông sách mà người dùng muốn)
@@ -6,12 +6,10 @@ Các chức năng cần có
     + Theo dõi người dùng khác,
     + Cho phép chia sẻ sách,
 
-API Example
-
-
+**API Example**
 * USER ROUTER   
 
-"/user"
+_"/user"_
  - GetAll: Get 
  - Insert: Post 
     {
@@ -32,15 +30,15 @@ API Example
         "isdeteled" : "number" // 1- deteled, 0- restore (default)
     }
 
-"/user/:username"
+_"/user/:username"_
 - Show User by username : Get
 
-"/user/s=:username"
+_"/user/s=:username"_
 - Show user by search
 
 *PROFILE ROUTER
 
-"/profile/:username"
+_"/profile/:username"_
 -  Get profile by username: Get 
  - Insert: Post 
     {
