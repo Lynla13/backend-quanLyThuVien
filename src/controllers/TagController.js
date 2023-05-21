@@ -1,96 +1,57 @@
+import { query } from "express";
 import Model from "../models/index";
 
 
-const limit = 30;
-
 async function showAll (req,res) {
-// Show book by Page
-    //pagation function
-    let book = await Model.BookModel.showAll();
-    let pageLimit = limit;
-    if (book.length<limit) 
-    {
-        pageLimit = book.length;
-    }
-    let maxPage = Math.floor (book.length/pageLimit-1);
-    let pageNum = req.params.page ||'1' ;
-    let page = pageLimit*pageNum;
-    res.json({maxpage: maxPage, page:page, Book:book}); 
-    res.end();
-
-}
-
-async function showBySearch (req,res) {
-    // Show book by Page
-    //pagation function
-        const value = []; 
-        value [0] = req.params.query;
-        let book = await Model.BookModel.showByCondi_2(value [0]);
-        let pageLimit = limit;
-        if (book.length < limit) 
-        {
-            pageLimit = book.length;
-        }
-        let maxPage = Math.floor (book.length/pageLimit-1);
-        let pageNum = req.params.page ||'1' ;
-        let page = pageLimit*pageNum;
-        res.json({maxpage: maxPage, page:page, Book:book}); 
-        res.end();
-}
-
-//Hiện thị ảnh theo 1 thể loại
-async function showbyTag (req,res) {
-    const value = []; 
-    value [0] = req.params.query;
-    let book = await Model.BookModel.showByCondi_1(value [0]);
-    let pageLimit = limit;
-    if (book.length < limit) 
-    {
-        pageLimit = book.length;
-    }
-    let maxPage = Math.floor (book.length/pageLimit-1);
-    let pageNum = req.params.page ||'1' ;
-    let page = pageLimit*pageNum;
-    res.json({maxpage: maxPage, page:page, Book:book}); 
-    res.end();
-}
-
-
-//Hiện thị ảnh theo nhiều thể loại
-async function showbyTags (req,res) {
-
-}
-//Hiển thị ảnh không có những thể loại
-async function showNotByTags (req,res) {
-
+    try {
+        let tag= await Model.TagModel.showAll();
+        res.send(tag); 
+      }
+      catch(e) {
+        res.send(e);
+      }
 }
 
 async function insert (req,res) {
-    const value = []; 
-    value [0] = req.body.name;
-    value [1] = req.body.price;
-    value [2] = req.body.preview;
-    value [3] = req.body.theloai;
-    Model.BookModel.insert (value = []);
+    let name = req.params.name;
+    let mota = req.params.mota;
+    try {
+        Model.TagModel.insert (name,mota);
+        return res.send ('Insert Successfull') ;
+      }
+      catch(e) {
+        return res.send(e);
+      }
+   
 } 
 
 async function update (req,res) {
-    const value = []; 
-    value [0] = req.body.id;
-    value [1] = req.body.name;
-    value [2] = req.body.price;
-    value [3] = req.body.preview;
-    value [4] = req.body.theloai;
-    Model.BookModel.update (value = []);
+    let id = req.params.id;
+    let name = req.params.name;
+    let mota = req.params.mota;
+    try {
+        Model.TagModel.update (id,name,mota);
+        return res.send ('Update Successfull') ;
+      }
+      catch(e) {
+        return res.send(e);
+      }
+    
 } 
 
 async function remove (req,res) {
-    const value = []; 
-    value [0] = req.body.id;
-    value [1] = req.body.isdeleted;
-    Model.BookModel.update (value = []);
+    let id = req.params.id;
+    let isdeleted = req.params.level || 1;
+    try {
+        Model.TagModel.remove(id, isdeleted);
+        return res.send ('Remove Successfull') ;
+      }
+      catch(e) {
+        return res.send(e);
+      }
+    
 } 
 
 module.exports = {
-    showAll,showbyTag,showbyTags,showNotByTags, showBySearch, insert,update, remove
+    showAll, insert,update, remove
 }

@@ -1,96 +1,70 @@
+import { query } from "express";
 import Model from "../models/index";
 
 
-const limit = 30;
-
 async function showAll (req,res) {
-// Show book by Page
-    //pagation function
-    let book = await Model.BookModel.showAll();
-    let pageLimit = limit;
-    if (book.length<limit) 
-    {
-        pageLimit = book.length;
-    }
-    let maxPage = Math.floor (book.length/pageLimit-1);
-    let pageNum = req.params.page ||'1' ;
-    let page = pageLimit*pageNum;
-    res.json({maxpage: maxPage, page:page, Book:book}); 
-    res.end();
-
+    try {
+        let staff = await Model.StaffModel.showAll();
+        res.send(staff); 
+      }
+      catch(e) {
+        res.send(e);
+      }
 }
 
-async function showBySearch (req,res) {
-    // Show book by Page
-    //pagation function
-        const value = []; 
-        value [0] = req.params.query;
-        let book = await Model.BookModel.showByCondi_2(value [0]);
-        let pageLimit = limit;
-        if (book.length < limit) 
-        {
-            pageLimit = book.length;
-        }
-        let maxPage = Math.floor (book.length/pageLimit-1);
-        let pageNum = req.params.page ||'1' ;
-        let page = pageLimit*pageNum;
-        res.json({maxpage: maxPage, page:page, Book:book}); 
-        res.end();
-}
-
-//Hiện thị ảnh theo 1 thể loại
-async function showbyTag (req,res) {
-    const value = []; 
-    value [0] = req.params.query;
-    let book = await Model.BookModel.showByCondi_1(value [0]);
-    let pageLimit = limit;
-    if (book.length < limit) 
-    {
-        pageLimit = book.length;
-    }
-    let maxPage = Math.floor (book.length/pageLimit-1);
-    let pageNum = req.params.page ||'1' ;
-    let page = pageLimit*pageNum;
-    res.json({maxpage: maxPage, page:page, Book:book}); 
-    res.end();
-}
-
-
-//Hiện thị ảnh theo nhiều thể loại
-async function showbyTags (req,res) {
-
-}
-//Hiển thị ảnh không có những thể loại
-async function showNotByTags (req,res) {
-
+async function showByUsername (req,res) {
+    let username = req.params.username;
+    try {
+        let staff= await Model.StaffModel.showByCondi (username);
+        res.send (staff) ;
+      }
+      catch(e) {
+        res.send(e);
+      }
 }
 
 async function insert (req,res) {
-    const value = []; 
-    value [0] = req.body.name;
-    value [1] = req.body.price;
-    value [2] = req.body.preview;
-    value [3] = req.body.theloai;
-    Model.BookModel.insert (value);
+    let username = req.params.username;
+    let fullname = req.params.fullname;
+    let sdt = req.params.sdt;
+    try {
+        Model.StaffModel.insert (username,fullname,sdt);
+        Model.UserModel.updateLevel (username,'1');
+        return res.send ('Insert Successfull') ;
+      }
+      catch(e) {
+        return res.send(e);
+      }
+   
 } 
 
 async function update (req,res) {
-    const value = []; 
-    value [0] = req.body.id;
-    value [1] = req.body.name;
-    value [2] = req.body.price;
-    value [3] = req.body.preview;
-    value [4] = req.body.theloai;
-    Model.BookModel.update (value = []);
+    let username = req.params.username;
+    let fullname = req.params.fullname;
+    let sdt = req.params.sdt;
+    try {
+        Model.StaffModel.update (username,fullname,sdt);
+        return res.send ('Update Successfull') ;
+      }
+      catch(e) {
+        return res.send(e);
+      }
+    
 } 
 
 async function remove (req,res) {
-    const value = []; 
-    value [0] = req.body.id;
-    value [1] = req.body.isdeleted;
-    Model.BookModel.update (value = []);
+    let username = req.params.username;
+    try {
+        Model.StaffModel.permanentRemove(username)
+        Model.UserModel.updateLevel (username,'0');
+        return res.send ('Remove Successfull') ;
+      }
+      catch(e) {
+        return res.send(e);
+      }
+    
 } 
 
 module.exports = {
-   showAll,showbyTag,showbyTags,showNotByTags, showBySearch, insert,update, remove
+    insert,update, remove, showByUsername,showAll
 }

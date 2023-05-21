@@ -1,12 +1,12 @@
 import BookController from './BookController'
-import SatffController from './StaffController'
+import StaffController from './StaffController'
 import UserController from './UserController'
 import ProfileController from './ProfileController'
 import TagController from './TagController'
 
 const Controller = {
     BookController,
-    SatffController,
+    StaffController,
     UserController,
     TagController,
     ProfileController

@@ -31,6 +31,13 @@ async function update (username,pass,level){
 
 }
 
+async function updateLevel (username,level){
+    let val = 'level = "'+level+'"';
+    let condition = 'username = "'+username+'"';
+    return Promise.resolve ( await BaseModel.update(table,val, condition));
+
+}
+
 async function remove (username,pass,isdeleted){
     let val = 'password = "'+pass+'",isdeleted= "'+isdeleted+'"';
     let condition = 'username = "'+username+'"';
@@ -45,5 +52,5 @@ async function permanentRemove (username) {
 }
 
 module.exports = {
-    showAll, showByCondi,showBySearch, insert, update, permanentRemove,remove
+    showAll, showByCondi,showBySearch, insert, update, permanentRemove,remove, updateLevel
 }

@@ -17,10 +17,10 @@ async function showByUsername (req,res) {
 
 async function insert (req,res) {
     let username = req.params.username;
-    let fullname = req.body.fullname;
-    let avatar_pic = req.body.avatar_pic;
-    let masinhvien = req.body.masinhvien;
-    let background_pic = req.body.background_pic;
+    let fullname = req.params.fullname;
+    let avatar_pic = req.params.avatar_pic;
+    let masinhvien = req.params.masinhvien;
+    let background_pic = req.params.background_pic;
     try {
         Model.ProfileModel.insert (username,fullname,avatar_pic,background_pic,masinhvien);
         return res.send ('Insert Successfull') ;
@@ -32,10 +32,10 @@ async function insert (req,res) {
 
 async function update (req,res) {
     let username = req.params.username;
-    let fullname = req.body.fullname;
-    let avatar_pic = req.body.avatar_pic;
-    let masinhvien = req.body.masinhvien;
-    let background_pic = req.body.background_pic;
+    let fullname = req.params.fullname;
+    let avatar_pic = req.params.avatar_pic;
+    let masinhvien = req.params.masinhvien;
+    let background_pic = req.params.background_pic;
     try {
         Model.ProfileModel.update (username,fullname,avatar_pic,background_pic,masinhvien);
         return res.send ('Update Successfull') ;
@@ -48,7 +48,7 @@ async function update (req,res) {
 
 async function remove (req,res) {
     let username = req.params.username;
-    let isdeleted = req.body.isdeleted || 1;
+    let isdeleted = req.params.isdeleted || 1;
     try {
         Model.ProfileModel.remove(isdeleted,username);
         return res.send ('Remove Successfull') ;

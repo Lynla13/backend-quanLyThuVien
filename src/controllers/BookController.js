@@ -48,11 +48,11 @@ async function showBySearch (req,res) {
 }
 
 async function insert (req,res) {
-    let name = req.body.name;
-    let price = req.body.price;
-    let preview = req.body.preview;
-    let theloai = req.body.theloai;
-    let author = req.body.author;
+    let name = req.params.name;
+    let price = req.params.price;
+    let preview = req.params.preview;
+    let theloai = req.params.theloai;
+    let author = req.params.author;
 
     try {
         Model.BookModel.insert (name,price,preview,theloai, author);
@@ -66,11 +66,11 @@ async function insert (req,res) {
 
 async function update (req,res) {
     let id = req.params.id;
-    let name = req.body.name;
-    let price = req.body.price;
-    let preview = req.body.preview;
-    let theloai = req.body.theloai;
-    let author = req.body.author;
+    let name = req.params.name;
+    let price = req.params.price;
+    let preview = req.params.preview;
+    let theloai = req.params.theloai;
+    let author = req.params.author;
 
     try {
         Model.BookModel.update (id,name,price,preview,theloai,author);
@@ -83,7 +83,7 @@ async function update (req,res) {
 
 async function remove (req,res) {
     let id = req.params.id;
-    let isdeleted = req.body.level || 1;
+    let isdeleted = req.params.level || 1;
     try {
         Model.BookModel.remove(id, isdeleted);
         return res.send ('Remove Successfull') ;

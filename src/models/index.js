@@ -9,6 +9,7 @@ import ProfileModel from './ProfileModel'
 import StaffModel from './StaffModel'
 import TuSachModel from './TuSachModel'
 import UserModel from './UserModel'
+import TagModel from './TagModel'
 
 const Model = {
     BookModel,
@@ -22,6 +23,7 @@ const Model = {
     StaffModel,
     TuSachModel,
     UserModel,
+    TagModel,
 }
 
 export default Model;

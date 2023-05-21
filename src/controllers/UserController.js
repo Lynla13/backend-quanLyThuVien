@@ -37,9 +37,9 @@ async function showByUsername (req,res) {
 }
 
 async function insert (req,res) {
-    let username = req.body.username;
-    let pass = req.body.pass;
-    let level = req.body.level || 0;
+    let username = req.params.username;
+    let pass = req.params.pass;
+    let level = req.params.level || 0;
     try {
         Model.UserModel.insert (username,pass,level);
         return res.send ('Insert Successfull') ;
@@ -51,9 +51,9 @@ async function insert (req,res) {
 } 
 
 async function update (req,res) {
-    let username = req.body.username;
-    let pass = req.body.pass;
-    let level = req.body.level || 0;
+    let username = req.params.username;
+    let pass = req.params.pass;
+    let level = req.params.level || 0;
     try {
         Model.UserModel.update (username,pass,level);
         return res.send ('Update Successfull') ;
@@ -65,9 +65,9 @@ async function update (req,res) {
 } 
 
 async function remove (req,res) {
-    let username = req.body.username;
-    let pass = req.body.pass;
-    let isdeleted = req.body.level || 1;
+    let username = req.params.username;
+    let pass = req.params.pass;
+    let isdeleted = req.params.level || 1;
     try {
         Model.UserModel.remove(username, pass, isdeleted);
         return res.send ('Remove Successfull') ;
