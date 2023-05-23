@@ -1,11 +1,11 @@
 import { Callbacks } from "jquery";
 import BaseModel from "./BaseModel";
 
-let table = 'theThuVien';
+let table = 'bangMuonSach';
 
-async function create(hanDung, nhanVien_id) {
-    let content = 'hanDung, nhanVien_id';
-    let val = "'"+hanDung+"','"+nhanVien_id+"'";
+async function create(nhanvien_id,the_id,ngayMuon,hanTra) {
+    let content = 'nhanvien_id,the_id,ngayMuon,hanTra';
+    let val = "'"+nhanvien_id+"','"+the_id+"','"+ngayMuon+"','"+hanTra+"'";
     return Promise.resolve ( await BaseModel.insert(table, content,val));
 }
 
@@ -14,13 +14,13 @@ async function readByNhanVien (nhanVien_id) {
     return Promise.resolve ( await BaseModel.getByCondition(table, condition));
 }
 
-
-async function read () {
-    return Promise.resolve ( await BaseModel.getAllNoLimit(table, condition));
+async function readByThe (the_id) {
+    let condition = 'the_id = "' +the_id+ '"';
+    return Promise.resolve ( await BaseModel.getByCondition(table, condition));
 }
 
-async function update (id,hanDung, nhanVien_id) {
-    let val = 'hanDung = "'+hanDung+'", nhanVien_id = "'+nhanVien_id+'"';
+async function update (id,the_id) {
+    let val = 'the_id = "'+the_id+'"';
     let condition = 'id = "'+id+'"';
     return Promise.resolve ( await BaseModel.update(table,val, condition));
 }
@@ -30,5 +30,5 @@ async function del (id) {
     return Promise.resolve ( await BaseModel.deteleValue(table, condition));
 }
 module.exports = {
-    create,readByNhanVien,read,update,del,
+    create,readByNhanVien, readByThe,update,del,
 }

@@ -1,15 +1,7 @@
-import BookController from './BookController'
-import StaffController from './StaffController'
-import UserController from './UserController'
-import ProfileController from './ProfileController'
-import TagController from './TagController'
+import MuonSachController  from './MuonSachController'
 
 const Controller = {
-    BookController,
-    StaffController,
-    UserController,
-    TagController,
-    ProfileController
+        MuonSachController ,
 }
 
 export default Controller ;
