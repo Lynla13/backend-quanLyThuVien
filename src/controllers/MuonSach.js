@@ -5,11 +5,10 @@ import Model from "../models/index";
 async function create  (req,res) {
     let nhanVien_id = req.params.nhanVien_id;
     let the_id = req.params.the_id;
-    let ngayMuon = req.params.ngayMuon;
     let hanTra = req.params.hanTra;
 
     try {
-        Model.MuonSachModel.create (nhanVien_id,the_id,ngayMuon,hanTra);
+        Model.MuonSach.create (nhanVien_id,the_id, hanTra);
         return res.send ('Insert Successfull') ;
       }
       catch(e) {
@@ -21,7 +20,7 @@ async function create  (req,res) {
 async function readByNhanVien (req,res) {
   let nhanVien_id = req.params.nhanVien_id;
   try {
-      let user= await Model.MuonSachModel.readByNhanVien(nhanVien_id);
+      let user= await Model.MuonSach.readByNhanVien(nhanVien_id);
       res.send(user); 
     }
     catch(e) {
@@ -32,7 +31,7 @@ async function readByNhanVien (req,res) {
 async function readByThe (req,res) {
   let the_id = req.params.the_id;
   try {
-      let user= await Model.MuonSachModel.readByThe(the_id);
+      let user= await Model.MuonSach.readByThe(the_id);
       res.send(user); 
     }
     catch(e) {
@@ -41,11 +40,13 @@ async function readByThe (req,res) {
 }
 
 async function update (req,res) {
+    let id = req.params.id;
+    let hanTra = req.params.hanTra
     let nhanVien_id = req.params.nhanVien_id;
     let the_id = req.params.the_id;
 
     try {
-        Model.MuonSachModel.update (nhanVien_id,the_id);
+        Model.MuonSach.update (id,the_id,nhanVien_id,hanTra);
         return res.send ('Update Successfull') ;
       }
       catch(e) {
@@ -56,7 +57,7 @@ async function update (req,res) {
 async function del (req,res) {
     let id = req.params.id;
     try {
-        Model.MuonSachModel.del(id);
+        Model.MuonSach.del(id);
         return res.send ('Remove Successfull') ;
       }
       catch(e) {

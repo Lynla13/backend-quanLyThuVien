@@ -5,7 +5,7 @@ let table = 'cungCapSach';
 
 async function create(YC_id, tongTien) {
     let content = 'YC_id, tongTien';
-    let val = "'"+YC_id+"','"+tongTien_id+"'";
+    let val = "'"+YC_id+"','"+tongTien+"'";
     return Promise.resolve ( await BaseModel.insert(table, content,val));
 }
 

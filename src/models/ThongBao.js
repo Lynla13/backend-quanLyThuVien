@@ -22,7 +22,7 @@ async function readByDocGia (theThuVien_id) {
 
 async function del (id) {
     let condition = 'id = "'+id+'"';
-    return Promise.resolve ( await BaseModel.deteleValue(table, condition));
+    return Promise.resolve ( await BaseModel.removeV(table, condition));
 }
 module.exports = {
     create,readByNhanVien,readByDocGia,del,
