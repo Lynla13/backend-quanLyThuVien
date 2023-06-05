@@ -12,8 +12,10 @@ import TheThuVien from './TheThuVien'
 import ThongBao from './ThongBao'
 import YeuCauNhapChiTiet from './YeuCauNhapChiTiet'
 import YeuCauNhapSach from './YeuCauNhapSach'
+import Admin from './Admin'
 
 const Model = {
+        Admin,
         MuonSach,
         ChiTietTheLoai,
         CungCapSach,

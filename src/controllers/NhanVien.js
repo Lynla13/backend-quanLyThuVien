@@ -5,7 +5,7 @@ import Model from "../models/index";
 async function create  (req,res) {
     let id = req.params.id;
     let tenNV = req.params.tenNV;
-    let NgaySinh = req.params.NgaySinh;
+    let NgaySinh = req.params.ngaySinh;
     let sdt = req.params.sdt;
 
     try {
@@ -31,13 +31,27 @@ async function readByNhanVien(req,res) {
 
 async function read(req,res) {
     try {
-        let user= await Model.NhanVienModel.read();
+        let user= await Model.NhanVien.read();
         res.send(user); 
       }
       catch(e) {
         res.send(e);
       }
   }
+
+
+  async function readAllByLimit(req,res) {
+    let orderby = 'id asc';
+    let limit = req.params.limit;
+    let offset= req.params.offset;
+      try {
+          let user= await Model.NhanVien.readAllByLimit(orderby,limit,offset);
+          res.send(user); 
+        }
+        catch(e) {
+          res.send(e);
+        }
+    }
 
 async function update (req,res) {
     let id = req.params.id;
@@ -66,5 +80,5 @@ async function del (req,res) {
 } 
 
 module.exports = {
-  create, readByNhanVien,read, update,del
+  create, readByNhanVien,read, update,del, readAllByLimit
 }

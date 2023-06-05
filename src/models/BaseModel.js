@@ -73,10 +73,12 @@ function update (table,value,condition) {
 function removeV (table, condi) {
     pool.query (`DELETE FROM `+table+` WHERE `+condi+``)
  }
+//Delete
+function removeAll (table) {
+    pool.query (`DELETE FROM `+table+``)
+ }
 
-
-
-module.exports = {
+ module.exports = {
     createDatabase, createTable, insert, getAll, getAllNoLimit, 
-    getCount, getByCondition, update, removeV , getIn
+    getCount, getByCondition, update, removeV , getIn, removeAll
 }

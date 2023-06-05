@@ -17,6 +17,9 @@ async function readByNhanVien (id) {
 async function read () {
     return Promise.resolve ( await BaseModel.getAllNoLimit(table, condition));
 }
+async function readAllByLimit (orderBy, limit, offset) {
+    return Promise.resolve ( await BaseModel.getAll(table,orderBy, limit, offset));
+}
 
 async function update (id,tenNV, ngaySinh, sdt) {
     let val = 'tenNV = "'+tenNV+'", ngaySinh = "'+ngaySinh+'", sdt = "'+sdt+'"';
@@ -29,5 +32,5 @@ async function del (id) {
     return Promise.resolve ( await BaseModel.removeV(table, condition));
 }
 module.exports = {
-    create,readByNhanVien, read,update,del,
+    create,readByNhanVien, read,update,del,readAllByLimit
 }

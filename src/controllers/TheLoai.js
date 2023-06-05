@@ -27,6 +27,35 @@ async function read(req,res) {
       }
   }
 
+async function readAllByLimit(req,res) {
+  let orderby = 'id asc';
+  let limit = req.params.limit;
+  let offset= req.params.offset;
+    try {
+        let user= await Model.TheLoai.readAllByLimit(orderby,limit,offset);
+        res.send(user); 
+      }
+      catch(e) {
+        res.send(e);
+      }
+  }
+
+
+  async function search(req,res) {
+    let query = req.params.query;
+    try {
+        let user= await Model.TheLoai.readBySearch(query);
+        if (user.length <= 0) {
+          res.send('Giá trị cần tìm không tồn tại'); 
+        }else {
+          res.send(user); 
+        }
+      }
+      catch(e) {
+        res.send(e);
+      }
+  }
+
 async function update (req,res) {
     let id = req.params.id;
     let tenTheLoai = req.params.tenTheLoai;
@@ -41,7 +70,6 @@ async function update (req,res) {
     }
 }
 
-
 async function del (req,res) {
     let id = req.params.id;
     try {
@@ -53,6 +81,16 @@ async function del (req,res) {
       }
 } 
 
+async function delAll (req,res) {
+    try {
+        Model.TheLoai.delAll(id);
+        return res.send ('Remove Successfull') ;
+      }
+      catch(e) {
+        return res.send(e);
+      }
+} 
+
 module.exports = {
-  create, read, update, del
+  create, read, update, del, search, readAllByLimit, delAll
 }

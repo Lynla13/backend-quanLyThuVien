@@ -29,9 +29,10 @@ async function create  (req,res) {
     let lanTaiBan = req.params.lanTaiBan;
     let preview = req.params.preview;
     let preview_pic = req.params.preview_pic;
+    let id_theLoai = req.params.id_theLoai;
 
     try {
-        Model.Sach.create (tenSach,tacGia, lanTaiBan, preview,preview_pic);
+        Model.Sach.create (tenSach,tacGia, lanTaiBan, preview,preview_pic, id_theLoai);
         return res.send ('Insert Successfull') ;
       }
       catch(e) {
@@ -40,10 +41,48 @@ async function create  (req,res) {
    
 } 
 
+async function readAllByLimit(req,res) {
+  let orderby = 'id asc';
+  let limit = req.params.limit;
+  let offset= req.params.offset;
+    try {
+        let user= await Model.Sach.readAllByLimit(orderby,limit,offset);
+        res.send(user); 
+      }
+      catch(e) {
+        res.send(e);
+      }
+  }
+
+async function readById_theLoai(req,res) {
+    let id_theLoai = req.params.id_theLoai;
+    let limit = req.params.limit;
+    let offset= req.params.offset;
+      try {
+          let user= await Model.Sach.readById_theLoai(id_theLoai,limit,offset);
+          res.send(user); 
+        }
+        catch(e) {
+          res.send(e);
+        }
+  }
+
+async function readById_theLoaiNoLimit (req,res) {
+    let id_theLoai = req.params.id_theLoai;
+      try {
+          let user= await Model.Sach.readById_theLoaiNoLimit(id_theLoai);
+          res.send(user); 
+        }
+        catch(e) {
+          res.send(e);
+        }
+
+  }
+
 async function readBySearch(req,res) {
-  let tenSach = req.params.tenSach;
+  let tenSach = req.params.query;
   try {
-      let user= await Model.Sach.readBySach(tenSach);
+      let user= await Model.Sach.readBySearch(tenSach);
       res.send(user); 
     }
     catch(e) {
@@ -54,7 +93,7 @@ async function readBySearch(req,res) {
 async function readById(req,res) {
     let id = req.params.id;
     try {
-        let user= await Model.Sach.readBySach(id);
+        let user= await Model.Sach.readById(id);
         res.send(user); 
       }
       catch(e) {
@@ -101,5 +140,7 @@ async function del (req,res) {
 } 
 
 module.exports = {
-  create, readBySearch,read, readById,update,del, uploadImage, importData 
+  readById_theLoaiNoLimit,
+  create, readBySearch,read, readById,update,del, uploadImage, importData, readAllByLimit, 
+  readById_theLoai, 
 }
